@@ -229,6 +229,11 @@ function moveUp() {
          }
       }
 
+      arr2 = arr.filter((v) => v != 0)
+      for (let i = arr2.length; i < arr.length; i++) {
+        arr2.unshift(0)
+      }
+
       up0.next = arr2[0] || 0
       up1.next = arr2[1] || 0
       up2.next = arr2[2] || 0
@@ -240,7 +245,6 @@ function moveUp() {
       }
   }
   if (illegalMoveCtr === 4) {
-    console.log('NO')
     return
   }
   redrawBoard()
