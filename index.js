@@ -3,6 +3,26 @@ $(document).ready(function() {
   addEventListeners()
   addRandomSquare()
   addRandomSquare()
+  changeColors()
+
+  // Initialize touch controls
+
+   $(".square").swipe( {
+     swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+       if (direction === 'up') {
+         moveUp()
+       }
+       if (direction === 'down') {
+         moveDown()
+       }
+       if (direction === 'left') {
+         moveLeft()
+       }
+       if (direction === 'right') {
+         moveRight()
+       }
+     }
+   })
 })
 
 //Global Vars
@@ -144,6 +164,7 @@ function moveLeft() {
   redrawBoard()
   addRandomSquare()
   checkForWinner()
+  changeColors()
 }
 
 function moveRight() {
@@ -165,6 +186,11 @@ function moveRight() {
          }
       }
 
+      arr2 = arr2.filter((v) => v != 0)
+      for (let i = arr2.length; i < arr.length; i++) {
+        arr2.unshift(0)
+      }
+
       right0.next = arr2[0] || 0
       right1.next = arr2[1] || 0
       right2.next = arr2[2] || 0
@@ -181,6 +207,7 @@ function moveRight() {
   redrawBoard()
   addRandomSquare()
   checkForWinner()
+  changeColors()
 }
 
 function moveUp() {
@@ -219,6 +246,7 @@ function moveUp() {
   redrawBoard()
   addRandomSquare()
   checkForWinner()
+  changeColors()
 }
 
 function moveDown() {
@@ -255,13 +283,55 @@ function moveDown() {
   redrawBoard()
   addRandomSquare()
   checkForWinner()
+  changeColors()
 }
 
 function checkForWinner() {
   const boardSquares = document.getElementsByClassName('square')
   for (let i = 0; i < boardSquares.length; i++) {
-    if (boardSquares[i].value === 2048) {
+    if (boardSquares[i].innerText === 2048) {
       alert('WINNER!!!!')
     }
   }
+}
+
+function changeColors() {
+  const boardSquares = document.getElementsByClassName('square')
+  $('.square').each(function() {
+    $(this).removeClass('two').removeClass('four').removeClass('eight').removeClass('sixteen').removeClass('thirtytwo').removeClass('sixtyfour').removeClass('onetwentyeight').removeClass('twofiftysix').removeClass('fivetwelve').removeClass('onethousandtwentyfour').removeClass('twentyfortyeight')
+
+    if ($(this)[0].innerText === '2') {
+      $(this).addClass('two')
+    }
+    if ($(this)[0].innerText === '4') {
+      $(this).addClass('four')
+    }
+    if ($(this)[0].innerText === '8') {
+      $(this).addClass('eight')
+    }
+    if ($(this)[0].innerText === '16') {
+      $(this).addClass('sixteen')
+    }
+    if ($(this)[0].innerText === '32') {
+      $(this).addClass('thirtytwo')
+    }
+    if ($(this)[0].innerText === '64') {
+      $(this).addClass('sixtyfour')
+    }
+    if ($(this)[0].innerText === '128') {
+      $(this).addClass('onetwentyeight')
+    }
+    if ($(this)[0].innerText === '256') {
+      $(this).addClass('twofiftysix')
+    }
+    if ($(this)[0].innerText === '512') {
+      $(this).addClass('fivetwelve')
+    }
+    if ($(this)[0].innerText === '1024') {
+      $(this).addClass('onethousandtwentyfour')
+    }
+    if ($(this)[0].innerText === '2048') {
+      $(this).addClass('twentyfortyeight')
+    }
+  })
 }
