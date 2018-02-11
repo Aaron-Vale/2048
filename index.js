@@ -143,6 +143,9 @@ function moveLeft() {
         if (arr2[i + 1] === arr2[i]) {
           arr2[i] *= 2
           arr2[i + 1] = 0
+          let score = parseInt($('.score')[0].innerText)
+          score += arr2[i]
+          $('.score')[0].innerText = score.toString()
          }
       }
       arr3 = arr2.filter((v) => v != 0)
@@ -165,6 +168,9 @@ function moveLeft() {
   addRandomSquare()
   checkForWinner()
   changeColors()
+  if (checkForLoser()) {
+    alert('Game Over! Final score: ' + $('.score')[0].innerText)
+  }
 }
 
 function moveRight() {
@@ -183,6 +189,9 @@ function moveRight() {
         if (arr2[i - 1] === arr2[i]) {
           arr2[i] *= 2
           arr2[i - 1] = 0
+          let score = parseInt($('.score')[0].innerText)
+          score += arr2[i]
+          $('.score')[0].innerText = score.toString()
          }
       }
 
@@ -208,6 +217,9 @@ function moveRight() {
   addRandomSquare()
   checkForWinner()
   changeColors()
+  if (checkForLoser()) {
+    alert('Game Over! Final score: ' + $('.score')[0].innerText)
+  }
 }
 
 function moveUp() {
@@ -226,10 +238,13 @@ function moveUp() {
         if (arr2[i - 1] === arr2[i]) {
           arr2[i] *= 2
           arr2[i - 1] = 0
+          let score = parseInt($('.score')[0].innerText)
+          score += arr2[i]
+          $('.score')[0].innerText = score.toString()
          }
       }
 
-      arr2 = arr.filter((v) => v != 0)
+      arr2 = arr2.filter((v) => v != 0)
       for (let i = arr2.length; i < arr.length; i++) {
         arr2.unshift(0)
       }
@@ -251,6 +266,9 @@ function moveUp() {
   addRandomSquare()
   checkForWinner()
   changeColors()
+  if (checkForLoser()) {
+    alert('Game Over! Final score: ' + $('.score')[0].innerText)
+  }
 }
 
 function moveDown() {
@@ -266,6 +284,9 @@ function moveDown() {
         if (arr2[i + 1] === arr2[i]) {
           arr2[i] *= 2
           arr2[i + 1] = 0
+          let score = parseInt($('.score')[0].innerText)
+          score += arr2[i]
+          $('.score')[0].innerText = score.toString()
          }
       }
       arr3 = arr2.filter((v) => v != 0)
@@ -288,15 +309,44 @@ function moveDown() {
   addRandomSquare()
   checkForWinner()
   changeColors()
+  if (checkForLoser()) {
+    alert('Game Over! Final score: ' + $('.score')[0].innerText)
+  }
 }
 
 function checkForWinner() {
   const boardSquares = document.getElementsByClassName('square')
   for (let i = 0; i < boardSquares.length; i++) {
-    if (boardSquares[i].innerText === 2048) {
+    if (boardSquares[i].innerText === '2048') {
       alert('WINNER!!!!')
     }
   }
+}
+
+function checkForLoser() {
+  const squares = []
+  for (let y = 3; y >= 0; y--) {
+    for (let x = 0; x < 4; x++) {
+      squares.push(getSquare(x,y))
+    }
+  }
+
+  for (let i = 0; i < squares.length; i++) {
+    if (squares[i].value === 0) {
+      return false
+    }
+    if (i < 12) {
+      if (squares[i].value === squares[i + 4].value) {
+        return false
+      }
+    }
+    if (i < 15 && i % 4 !== 3) {
+      if (squares[i].value === squares[i + 1].value) {
+        return false
+      }
+    }
+  }
+  return true
 }
 
 function changeColors() {
