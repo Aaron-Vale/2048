@@ -96,6 +96,8 @@ function addRandomSquare() {
   const boardSquares = document.getElementsByClassName('square')
   boardSquares[index].dataset.boardIndex = randomNum
   boardSquares[index].innerText = randomNum
+
+
 }
 
 function randomNumberAdd() {
@@ -169,7 +171,8 @@ function moveLeft() {
   checkForWinner()
   changeColors()
   if (checkForLoser()) {
-    alert('Game Over! Final score: ' + $('.score')[0].innerText)
+    $('.gameover').css('display','block')
+    $('.resetbtn').click(resetGame)
   }
 }
 
@@ -218,7 +221,8 @@ function moveRight() {
   checkForWinner()
   changeColors()
   if (checkForLoser()) {
-    alert('Game Over! Final score: ' + $('.score')[0].innerText)
+    $('.gameover').css('display','block')
+    $('.resetbtn').click(resetGame)
   }
 }
 
@@ -267,7 +271,8 @@ function moveUp() {
   checkForWinner()
   changeColors()
   if (checkForLoser()) {
-    alert('Game Over! Final score: ' + $('.score')[0].innerText)
+    $('.gameover').css('display','block')
+    $('.resetbtn').click(resetGame)
   }
 }
 
@@ -310,7 +315,8 @@ function moveDown() {
   checkForWinner()
   changeColors()
   if (checkForLoser()) {
-    alert('Game Over! Final score: ' + $('.score')[0].innerText)
+    $('.gameover').css('display','block')
+    $('.resetbtn').click(resetGame)
   }
 }
 
@@ -318,7 +324,7 @@ function checkForWinner() {
   const boardSquares = document.getElementsByClassName('square')
   for (let i = 0; i < boardSquares.length; i++) {
     if (boardSquares[i].innerText === '2048') {
-      alert('WINNER!!!!')
+      $('.victory').css('display', 'block')
     }
   }
 }
@@ -347,6 +353,29 @@ function checkForLoser() {
     }
   }
   return true
+}
+
+function resetGame() {
+
+  for (let i = 0; i < gameBoard.length; i++) {
+    gameBoard[i].value = 0
+    gameBoard[i].next = 0
+  }
+
+  const squares = document.getElementsByClassName('square')
+  for (let i = 0; i < squares.length; i++) {
+    squares[i].dataset.x = gameBoard[i].x
+    squares[i].dataset.y = gameBoard[i].y
+    squares[i].dataset.boardIndex = i
+    squares[i].dataset.value = null
+  }
+  addRandomSquare()
+  addRandomSquare()
+  redrawBoard()
+  changeColors()
+  $('.score')[0].innerText = '0'
+  $('.gameover').css('display', 'none')
+  $('.victory').css('display', 'none')
 }
 
 function changeColors() {

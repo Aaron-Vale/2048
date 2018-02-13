@@ -1,11 +1,58 @@
 body {
   margin: 0;
-  font-family: 'Helvetica Neue';
   text-align: center;
+  background-color: #EEE4DA;
+background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2z' fill='%23ffffff' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+h1, h2, .score, .victory {
+  font-family: 'Montserrat', sans-serif;
+}
+
+i {
+  color: #000000;
+}
+
+.instructions {
+  position: relative;
+  top: 50px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: rgba(0,0,0,0.1);
+}
+
+.gameover {
+  position: absolute;
+  background-color: rgba(0,0,0,0.1);
+  animation: 1s slideright;
+  border: 5px solid #000000;
+  border-left: 0;
+  display: none;
+  padding: 10px;
+}
+
+.victory {
+  position: absolute;
+  background-color: rgba(0,0,0,0.1);
+  animation: 1s slideright;
+  border: 5px solid #000000;
+  border-left: 0;
+  display: none;
+  padding: 10px;
+  top: 0;
+}
+
+@keyframes slideright {
+  0% {
+    left: -50px;
+  }
+
+  100% {
+    left: 0;
+  }
 }
 
 .container {
-  width: 450px;
+  width: 470px;
   height: 400px;
   margin: 0 auto;
   display: flex;
@@ -23,12 +70,14 @@ body {
   font-size: 48px;
   text-align: center;
   line-height: 90px;
+  font-family: 'Helvetica Neue';
 }
 
 .two {
   background-color: #EEE4DA;
   color: #776E65;
 }
+
 
 .four {
   background-color: #EDE0C8;

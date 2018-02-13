@@ -3,13 +3,23 @@
   <head>
     <title>2048</title>
     <link type="text/css" rel="stylesheet" href="./index.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="./jquery.touchSwipe.min.js"></script>
     <script type="text/javascript" src="./index.js"></script>
+    <script src="https://use.fontawesome.com/39ab9ec7c4.js"></script>
   </head>
   <body>
     <h1>2048</h1>
     <h2>Your score: <span class='score'>0</span></h2>
+    <div class='gameover'>
+      <h2>Game Over!</h2>
+      <button class='resetbtn'>Try Again?</button>
+    </div>
+    <div class='victory'>
+      <h2>You win!</h2>
+      <p>Keep playing to increase your score!</p>
+    </div>
     <div class='container'>
       <div class='square'></div>
       <div class='square'></div>
@@ -28,5 +38,13 @@
       <div class='square'></div>
       <div class='square'></div>
     </div>
+    <div class='instructions'>
+      <p>Controls: Arrow Keys or swipe in the direction you want to move. <br> Match numbers to double their value. If you reach 2048 without running out of moves, you win!</p>
+      <p> Developed by Aaron Vale </p>
+      <a href="https://www.linkedin.com/in/aaron-vale/"><i class="fa fa-2x fa-linkedin" aria-hidden="true"></i></a>
+      <a href="https://github.com/Aaron-Vale/"><i class="fa fa-2x fa-github" aria-hidden="true"></i></a>
+      <a href="mailto:vale.aaron@gmail.com"><i class="fa fa-2x fa-envelope" aria-hidden="true"></i></a>
+    </div>
+
   </body>
 </html>
